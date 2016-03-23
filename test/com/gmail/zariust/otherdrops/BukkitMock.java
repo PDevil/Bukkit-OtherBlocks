@@ -1,5 +1,6 @@
 package com.gmail.zariust.otherdrops;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Collection;
 import java.util.Iterator;
@@ -9,31 +10,19 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Logger;
 
-import org.bukkit.BlockChangeDelegate;
-import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
-import org.bukkit.ChunkSnapshot;
-import org.bukkit.Difficulty;
-import org.bukkit.Effect;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.Server;
-import org.bukkit.Sound;
-import org.bukkit.TreeType;
+import org.bukkit.*;
 import org.bukkit.Warning.WarningState;
-import org.bukkit.World;
-import org.bukkit.WorldCreator;
-import org.bukkit.WorldType;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarFlag;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
 import org.bukkit.command.CommandException;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Arrow;
-import org.bukkit.entity.CreatureType;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.FallingBlock;
@@ -58,6 +47,7 @@ import org.bukkit.plugin.ServicesManager;
 import org.bukkit.plugin.messaging.Messenger;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scoreboard.ScoreboardManager;
+import org.bukkit.util.CachedServerIcon;
 import org.bukkit.util.Vector;
 
 import com.avaje.ebean.config.ServerConfig;
@@ -167,6 +157,11 @@ public class BukkitMock {
             @Override
             public List<Player> matchPlayer(String arg0) {
                 // TODO Auto-generated method stub
+                return null;
+            }
+
+            @Override
+            public Player getPlayer(UUID uuid) {
                 return null;
             }
 
@@ -319,7 +314,7 @@ public class BukkitMock {
             }
 
             @Override
-            public Player[] getOnlinePlayers() {
+            public Collection<? extends Player> getOnlinePlayers() {
                 // TODO Auto-generated method stub
                 return null;
             }
@@ -339,6 +334,11 @@ public class BukkitMock {
             @Override
             public OfflinePlayer getOfflinePlayer(String arg0) {
                 // TODO Auto-generated method stub
+                return null;
+            }
+
+            @Override
+            public OfflinePlayer getOfflinePlayer(UUID uuid) {
                 return null;
             }
 
@@ -415,8 +415,18 @@ public class BukkitMock {
             }
 
             @Override
+            public Player[] _INVALID_getOnlinePlayers() {
+                return new Player[0];
+            }
+
+            @Override
             public Set<OfflinePlayer> getBannedPlayers() {
                 // TODO Auto-generated method stub
+                return null;
+            }
+
+            @Override
+            public BanList getBanList(BanList.Type type) {
                 return null;
             }
 
@@ -474,6 +484,11 @@ public class BukkitMock {
             public Inventory createInventory(InventoryHolder arg0,
                     InventoryType arg1) {
                 // TODO Auto-generated method stub
+                return null;
+            }
+
+            @Override
+            public Inventory createInventory(InventoryHolder inventoryHolder, InventoryType inventoryType, String s) {
                 return null;
             }
 
@@ -594,6 +609,51 @@ public class BukkitMock {
             @Override
             public ScoreboardManager getScoreboardManager() {
                 // TODO Auto-generated method stub
+                return null;
+            }
+
+            @Override
+            public CachedServerIcon getServerIcon() {
+                return null;
+            }
+
+            @Override
+            public CachedServerIcon loadServerIcon(File file) throws IllegalArgumentException, Exception {
+                return null;
+            }
+
+            @Override
+            public CachedServerIcon loadServerIcon(BufferedImage bufferedImage) throws IllegalArgumentException, Exception {
+                return null;
+            }
+
+            @Override
+            public void setIdleTimeout(int i) {
+
+            }
+
+            @Override
+            public int getIdleTimeout() {
+                return 0;
+            }
+
+            @Override
+            public ChunkGenerator.ChunkData createChunkData(World world) {
+                return null;
+            }
+
+            @Override
+            public BossBar createBossBar(String s, BarColor barColor, BarStyle barStyle, BarFlag... barFlags) {
+                return null;
+            }
+
+            @Override
+            public UnsafeValues getUnsafe() {
+                return null;
+            }
+
+            @Override
+            public Spigot spigot() {
                 return null;
             }
         };
@@ -848,7 +908,12 @@ public class BukkitMock {
                 // TODO Auto-generated method stub
                 return null;
             }
-    
+
+            @Override
+            public Collection<Entity> getNearbyEntities(Location location, double v, double v1, double v2) {
+                return null;
+            }
+
             @Override
             public List<BlockPopulator> getPopulators() {
                 // TODO Auto-generated method stub
@@ -1116,16 +1181,9 @@ public class BukkitMock {
                 // TODO Auto-generated method stub
                 return null;
             }
-    
+
             @Override
-            public LivingEntity spawnCreature(Location arg0, EntityType arg1) {
-                // TODO Auto-generated method stub
-                return null;
-            }
-    
-            @Override
-            public LivingEntity spawnCreature(Location arg0, CreatureType arg1) {
-                // TODO Auto-generated method stub
+            public <T extends Arrow> T spawnArrow(Location location, Vector vector, float v, float v1, Class<T> aClass) {
                 return null;
             }
     
@@ -1274,14 +1332,89 @@ public class BukkitMock {
                 // TODO Auto-generated method stub
                 return false;
             }
-    
+
+            @Override
+            public Spigot spigot() {
+                return null;
+            }
+
+            @Override
+            public WorldBorder getWorldBorder() {
+                return null;
+            }
+
+            @Override
+            public void spawnParticle(Particle particle, Location location, int i) {
+
+            }
+
+            @Override
+            public void spawnParticle(Particle particle, double v, double v1, double v2, int i) {
+
+            }
+
+            @Override
+            public <T> void spawnParticle(Particle particle, Location location, int i, T t) {
+
+            }
+
+            @Override
+            public <T> void spawnParticle(Particle particle, double v, double v1, double v2, int i, T t) {
+
+            }
+
+            @Override
+            public void spawnParticle(Particle particle, Location location, int i, double v, double v1, double v2) {
+
+            }
+
+            @Override
+            public void spawnParticle(Particle particle, double v, double v1, double v2, int i, double v3, double v4, double v5) {
+
+            }
+
+            @Override
+            public <T> void spawnParticle(Particle particle, Location location, int i, double v, double v1, double v2, T t) {
+
+            }
+
+            @Override
+            public <T> void spawnParticle(Particle particle, double v, double v1, double v2, int i, double v3, double v4, double v5, T t) {
+
+            }
+
+            @Override
+            public void spawnParticle(Particle particle, Location location, int i, double v, double v1, double v2, double v3) {
+
+            }
+
+            @Override
+            public void spawnParticle(Particle particle, double v, double v1, double v2, int i, double v3, double v4, double v5, double v6) {
+
+            }
+
+            @Override
+            public <T> void spawnParticle(Particle particle, Location location, int i, double v, double v1, double v2, double v3, T t) {
+
+            }
+
+            @Override
+            public <T> void spawnParticle(Particle particle, double v, double v1, double v2, int i, double v3, double v4, double v5, double v6, T t) {
+
+            }
+
             @Override
             public void playSound(Location arg0, Sound arg1, float arg2,
                     float arg3) {
                 // TODO Auto-generated method stub
     
             }
-    
+
+            @Override
+            public void playSound(Location location, String s, float v, float v1) {
+
+            }
+
             @Override
             public void setAmbientSpawnLimit(int arg0) {
                 // TODO Auto-generated method stub
@@ -1584,7 +1717,12 @@ public class BukkitMock {
                 // TODO Auto-generated method stub
                 return null;
             }
-    
+
+            @Override
+            public Collection<Entity> getNearbyEntities(Location location, double v, double v1, double v2) {
+                return null;
+            }
+
             @Override
             public List<BlockPopulator> getPopulators() {
                 // TODO Auto-generated method stub
@@ -1852,19 +1990,12 @@ public class BukkitMock {
                 // TODO Auto-generated method stub
                 return null;
             }
-    
+
             @Override
-            public LivingEntity spawnCreature(Location arg0, EntityType arg1) {
-                // TODO Auto-generated method stub
+            public <T extends Arrow> T spawnArrow(Location location, Vector vector, float v, float v1, Class<T> aClass) {
                 return null;
             }
-    
-            @Override
-            public LivingEntity spawnCreature(Location arg0, CreatureType arg1) {
-                // TODO Auto-generated method stub
-                return null;
-            }
-    
+
             @Override
             public LightningStrike strikeLightning(Location arg0) {
                 // TODO Auto-generated method stub
@@ -2010,14 +2141,89 @@ public class BukkitMock {
                 // TODO Auto-generated method stub
                 return false;
             }
-    
+
+            @Override
+            public Spigot spigot() {
+                return null;
+            }
+
+            @Override
+            public WorldBorder getWorldBorder() {
+                return null;
+            }
+
+            @Override
+            public void spawnParticle(Particle particle, Location location, int i) {
+
+            }
+
+            @Override
+            public void spawnParticle(Particle particle, double v, double v1, double v2, int i) {
+
+            }
+
+            @Override
+            public <T> void spawnParticle(Particle particle, Location location, int i, T t) {
+
+            }
+
+            @Override
+            public <T> void spawnParticle(Particle particle, double v, double v1, double v2, int i, T t) {
+
+            }
+
+            @Override
+            public void spawnParticle(Particle particle, Location location, int i, double v, double v1, double v2) {
+
+            }
+
+            @Override
+            public void spawnParticle(Particle particle, double v, double v1, double v2, int i, double v3, double v4, double v5) {
+
+            }
+
+            @Override
+            public <T> void spawnParticle(Particle particle, Location location, int i, double v, double v1, double v2, T t) {
+
+            }
+
+            @Override
+            public <T> void spawnParticle(Particle particle, double v, double v1, double v2, int i, double v3, double v4, double v5, T t) {
+
+            }
+
+            @Override
+            public void spawnParticle(Particle particle, Location location, int i, double v, double v1, double v2, double v3) {
+
+            }
+
+            @Override
+            public void spawnParticle(Particle particle, double v, double v1, double v2, int i, double v3, double v4, double v5, double v6) {
+
+            }
+
+            @Override
+            public <T> void spawnParticle(Particle particle, Location location, int i, double v, double v1, double v2, double v3, T t) {
+
+            }
+
+            @Override
+            public <T> void spawnParticle(Particle particle, double v, double v1, double v2, int i, double v3, double v4, double v5, double v6, T t) {
+
+            }
+
             @Override
             public void playSound(Location arg0, Sound arg1, float arg2,
                     float arg3) {
                 // TODO Auto-generated method stub
     
             }
-    
+
+            @Override
+            public void playSound(Location location, String s, float v, float v1) {
+
+            }
+
             @Override
             public void setAmbientSpawnLimit(int arg0) {
                 // TODO Auto-generated method stub

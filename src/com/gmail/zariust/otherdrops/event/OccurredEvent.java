@@ -24,6 +24,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
@@ -56,8 +57,11 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
-import org.bukkit.event.painting.PaintingBreakByEntityEvent;
-import org.bukkit.event.painting.PaintingBreakEvent;
+// Deprecated. Use HangingBreakEvent / HangingBreakByEntityEvent instead.
+//import org.bukkit.event.painting.PaintingBreakByEntityEvent;
+//import org.bukkit.event.painting.PaintingBreakEvent;
+import org.bukkit.event.hanging.HangingBreakByEntityEvent;
+import org.bukkit.event.hanging.HangingBreakEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -116,7 +120,7 @@ public class OccurredEvent extends AbstractDropEvent implements Cancellable {
         super(new BlockTarget(evt.getBlock()), Trigger.BREAK);
         event = evt;
         Block block = evt.getBlock();
-        List<Block> blocks = evt.getPlayer().getLastTwoTargetBlocks(null, 10);
+        List<Block> blocks = evt.getPlayer().getLastTwoTargetBlocks((Set<Material>) null, 10);
         if (blocks.size() > 1) {
             face = blocks.get(1).getFace(blocks.get(0));
         }
@@ -217,14 +221,17 @@ public class OccurredEvent extends AbstractDropEvent implements Cancellable {
         setRegions();
     }
 
-    public OccurredEvent(PaintingBreakEvent evt) {
-        super(new VehicleTarget(evt.getPainting()), Trigger.BREAK);
+    public OccurredEvent(HangingBreakEvent evt) {
+        super(new VehicleTarget(evt.getEntity() instanceof Painting ? (Painting)evt.getEntity() : null), evt.getEntity() instanceof Painting ? Trigger.BREAK : null);
+        if(!(evt.getEntity() instanceof Painting))
+            return;
+
         event = evt;
-        Painting canvas = evt.getPainting();
+        Painting canvas = (Painting) evt.getEntity();
         setLocationWorldBiomeLight(canvas);
         setWeatherTimeHeight(location);
-        if (evt instanceof PaintingBreakByEntityEvent) {
-            PaintingBreakByEntityEvent evt2 = (PaintingBreakByEntityEvent) evt;
+        if (evt instanceof HangingBreakByEntityEvent) {
+            HangingBreakByEntityEvent evt2 = (HangingBreakByEntityEvent) evt;
             Entity remover = evt2.getRemover();
             setTool(remover);
             attackRange = measureRange(location, remover.getLocation(),
@@ -234,18 +241,18 @@ public class OccurredEvent extends AbstractDropEvent implements Cancellable {
             case ENTITY:
                 setTool(DamageCause.ENTITY_ATTACK);
                 break;
-            case FIRE:
+            /*case FIRE:
                 setTool(DamageCause.FIRE_TICK);
-                break;
+                break;*/
             case OBSTRUCTION:
                 setTool(DamageCause.SUFFOCATION);
                 break;
             case PHYSICS:
                 setTool(DamageCause.CONTACT);
                 break;
-            case WATER:
+            /*case WATER:
                 setTool(DamageCause.DROWNING);
-                break;
+                break;*/
             }
         }
         setRegions();
@@ -774,7 +781,7 @@ public class OccurredEvent extends AbstractDropEvent implements Cancellable {
         super(new BlockTarget(evt.getBlock()), Trigger.BLOCK_PLACE);
         event = evt;
         Block block = evt.getBlock();
-        List<Block> blocks = evt.getPlayer().getLastTwoTargetBlocks(null, 10);
+        List<Block> blocks = evt.getPlayer().getLastTwoTargetBlocks((Set<Material>) null, 10);
         if (blocks.size() > 1) {
             face = blocks.get(1).getFace(blocks.get(0));
         }

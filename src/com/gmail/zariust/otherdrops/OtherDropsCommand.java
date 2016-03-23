@@ -20,11 +20,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.command.BlockCommandSender;
 import org.bukkit.command.Command;
@@ -207,7 +205,7 @@ public class OtherDropsCommand implements CommandExecutor {
             }
             if (args.length > 0) {
                 RPGItem blah2 = ItemManager.getItemByName(args[0]);
-                Location loc = player.getTargetBlock(null, 100)
+                Location loc = player.getTargetBlock((Set<Material>) null, 100)
                         .getLocation().add(0, 1, 0); // (???, max distance)
                 ItemStack item2 = blah2.item;
                 item2.setItemMeta(blah2.getLocaleMeta(Locale
@@ -326,7 +324,7 @@ public class OtherDropsCommand implements CommandExecutor {
             dsl.player = (Player) sender;
             playerName = dsl.player.getDisplayName();
             // loc = player.getLocation();
-            dsl.loc = dsl.player.getTargetBlock(null, 100).getLocation()
+            dsl.loc = dsl.player.getTargetBlock((Set<Material>) null, 100).getLocation()
                     .add(0, 1, 0); // (???, max distance)
             world = dsl.loc.getWorld();
         } else if (sender instanceof BlockCommandSender) {
@@ -542,7 +540,7 @@ public class OtherDropsCommand implements CommandExecutor {
                             + playerItem.getItemMeta().getDisplayName()
                                     .replaceAll("§", "&") + "\"";
                 sender.sendMessage(itemMsg);
-                Block block = player.getTargetBlock(null, 100);
+                Block block = player.getTargetBlock((Set<Material>) null, 100);
                 sender.sendMessage("Block looked at is " + block.toString()
                         + " mat: " + block.getType().toString()
                         + " lightlevel: " + block.getLightLevel()

@@ -34,6 +34,7 @@ import com.gmail.zariust.otherdrops.Log;
 import com.gmail.zariust.otherdrops.data.CreatureData;
 import com.gmail.zariust.otherdrops.data.Data;
 import com.gmail.zariust.otherdrops.options.ToolDamage;
+import org.bukkit.projectiles.ProjectileSource;
 
 public class ProjectileAgent implements Agent {
     private LivingSubject creature;
@@ -99,13 +100,13 @@ public class ProjectileAgent implements Agent {
     private static LivingSubject getShooterAgent(Projectile missile) {
         // Get the LivingAgent representing the shooter, which could be null, a
         // CreatureAgent, or a PlayerAgent
-        LivingEntity shooter = missile.getShooter();
+        ProjectileSource shooter = missile.getShooter();
         if (shooter == null)
             return null;
         else if (shooter instanceof Player)
             return new PlayerSubject((Player) shooter);
         else
-            return new CreatureSubject(shooter);
+            return new CreatureSubject((LivingEntity) shooter);
 
     }
 
@@ -230,15 +231,19 @@ public class ProjectileAgent implements Agent {
         // FIXME: why is this sometimes null? Is it ok?
         if (agent.getShooter() == null)
             return;
-        agent.getShooter().damage(amount);
+
+        if(agent.getShooter() instanceof LivingEntity)
+            ((LivingEntity)agent.getShooter()).damage(amount);
+        else if(agent.getShooter() instanceof Player)
+            ((Player)agent.getShooter()).damage(amount);
     }
 
     public EntityType getCreature() {
-        return getShooterType(agent.getShooter());
+        return getShooterType((LivingEntity) agent.getShooter());
     }
 
     public Data getCreatureData() {
-        return getShooterData(agent.getShooter());
+        return getShooterData((LivingEntity) agent.getShooter());
     }
 
     @Override
@@ -313,7 +318,13 @@ public class ProjectileAgent implements Agent {
             return null;
         }
         if (agent.getShooter() != null)
-            return agent.getShooter().getLocation();
+        {
+            ProjectileSource sh = agent.getShooter();
+            if(sh instanceof LivingEntity)
+                return ((LivingEntity) sh).getLocation();
+            else if(sh instanceof Player)
+                return ((Player) sh).getLocation();
+        }
         return null;
     }
 

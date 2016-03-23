@@ -24,40 +24,19 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-import org.bukkit.Achievement;
-import org.bukkit.Bukkit;
-import org.bukkit.Effect;
-import org.bukkit.EntityEffect;
-import org.bukkit.GameMode;
-import org.bukkit.Instrument;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Note;
-import org.bukkit.Server;
-import org.bukkit.Sound;
-import org.bukkit.Statistic;
-import org.bukkit.WeatherType;
-import org.bukkit.World;
+import org.bukkit.*;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.block.Block;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.conversations.Conversation;
 import org.bukkit.conversations.ConversationAbandonedEvent;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Egg;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Projectile;
-import org.bukkit.entity.Snowball;
+import org.bukkit.entity.*;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
-import org.bukkit.inventory.EntityEquipment;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryView;
+import org.bukkit.inventory.*;
 import org.bukkit.inventory.InventoryView.Property;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.map.MapView;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.permissions.Permissible;
@@ -91,6 +70,9 @@ public class PlayerWrapper implements Player {
     private Permissible getPermissible() {
         return override ? console : caller;
     }
+
+    @Override
+    public Spigot spigot() { return caller.spigot(); }
 
     @Override
     public boolean isOp() {
@@ -235,8 +217,18 @@ public class PlayerWrapper implements Player {
     }
 
     @Override
+    public List<Block> getLineOfSight(Set<Material> set, int i) {
+        return null;
+    }
+
+    @Override
     public Block getTargetBlock(HashSet<Byte> transparent, int maxDistance) {
         return caller.getTargetBlock(transparent, maxDistance);
+    }
+
+    @Override
+    public Block getTargetBlock(Set<Material> set, int i) {
+        return null;
     }
 
     @Override
@@ -246,18 +238,8 @@ public class PlayerWrapper implements Player {
     }
 
     @Override
-    public Egg throwEgg() {
-        return caller.throwEgg();
-    }
-
-    @Override
-    public Snowball throwSnowball() {
-        return caller.throwSnowball();
-    }
-
-    @Override
-    public Arrow shootArrow() {
-        return caller.shootArrow();
+    public List<Block> getLastTwoTargetBlocks(Set<Material> set, int i) {
+        return null;
     }
 
     @Override
@@ -534,6 +516,11 @@ public class PlayerWrapper implements Player {
     }
 
     @Override
+    public void sendSignChange(Location location, String[] strings) throws IllegalArgumentException {
+
+    }
+
+    @Override
     public void sendMap(MapView map) {
         caller.sendMap(map);
     }
@@ -550,8 +537,23 @@ public class PlayerWrapper implements Player {
     }
 
     @Override
+    public void removeAchievement(Achievement achievement) {
+
+    }
+
+    @Override
+    public boolean hasAchievement(Achievement achievement) {
+        return false;
+    }
+
+    @Override
     public void incrementStatistic(Statistic statistic) {
         caller.incrementStatistic(statistic);
+    }
+
+    @Override
+    public void decrementStatistic(Statistic statistic) throws IllegalArgumentException {
+
     }
 
     @Override
@@ -560,14 +562,79 @@ public class PlayerWrapper implements Player {
     }
 
     @Override
+    public void decrementStatistic(Statistic statistic, int i) throws IllegalArgumentException {
+
+    }
+
+    @Override
+    public void setStatistic(Statistic statistic, int i) throws IllegalArgumentException {
+
+    }
+
+    @Override
+    public int getStatistic(Statistic statistic) throws IllegalArgumentException {
+        return 0;
+    }
+
+    @Override
     public void incrementStatistic(Statistic statistic, Material material) {
         caller.incrementStatistic(statistic, material);
+    }
+
+    @Override
+    public void decrementStatistic(Statistic statistic, Material material) throws IllegalArgumentException {
+
+    }
+
+    @Override
+    public int getStatistic(Statistic statistic, Material material) throws IllegalArgumentException {
+        return 0;
     }
 
     @Override
     public void incrementStatistic(Statistic statistic, Material material,
             int amount) {
         caller.incrementStatistic(statistic, material, amount);
+    }
+
+    @Override
+    public void decrementStatistic(Statistic statistic, Material material, int i) throws IllegalArgumentException {
+
+    }
+
+    @Override
+    public void setStatistic(Statistic statistic, Material material, int i) throws IllegalArgumentException {
+
+    }
+
+    @Override
+    public void incrementStatistic(Statistic statistic, EntityType entityType) throws IllegalArgumentException {
+
+    }
+
+    @Override
+    public void decrementStatistic(Statistic statistic, EntityType entityType) throws IllegalArgumentException {
+
+    }
+
+    @Override
+    public int getStatistic(Statistic statistic, EntityType entityType) throws IllegalArgumentException {
+        return 0;
+    }
+
+    @Override
+    public void incrementStatistic(Statistic statistic, EntityType entityType, int i) throws IllegalArgumentException {
+
+    }
+
+    @Override
+    public void decrementStatistic(Statistic statistic, EntityType entityType, int i) {
+
+    }
+
+    @Override
+    public void setStatistic(Statistic statistic, EntityType entityType, int i) {
+
     }
 
     @Override
@@ -898,6 +965,11 @@ public class PlayerWrapper implements Player {
     }
 
     @Override
+    public InventoryView openMerchant(Villager villager, boolean b) {
+        return null;
+    }
+
+    @Override
     public InventoryView openWorkbench(Location arg0, boolean arg1) {
         // TODO Auto-generated method stub
         return null;
@@ -918,6 +990,11 @@ public class PlayerWrapper implements Player {
     @Override
     public <T extends Projectile> T launchProjectile(Class<? extends T> arg0) {
         // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public <T extends Projectile> T launchProjectile(Class<? extends T> aClass, Vector vector) {
         return null;
     }
 
@@ -997,6 +1074,11 @@ public class PlayerWrapper implements Player {
     @Override
     public Inventory getEnderChest() {
         // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public MainHand getMainHand() {
         return null;
     }
 
@@ -1136,6 +1218,16 @@ public class PlayerWrapper implements Player {
     @Override
     public boolean isCustomNameVisible() {
         // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public void setGlowing(boolean b) {
+
+    }
+
+    @Override
+    public boolean isGlowing() {
         return false;
     }
 
@@ -1314,9 +1406,89 @@ public class PlayerWrapper implements Player {
     }
 
     @Override
+    public boolean isGliding() {
+        return false;
+    }
+
+    @Override
+    public void setGliding(boolean b) {
+
+    }
+
+    @Override
     public double getHealthScale() {
         // TODO Auto-generated method stub
         return 0;
+    }
+
+    @Override
+    public Entity getSpectatorTarget() {
+        return null;
+    }
+
+    @Override
+    public void setSpectatorTarget(Entity entity) {
+
+    }
+
+    @Override
+    public void sendTitle(String s, String s1) {
+
+    }
+
+    @Override
+    public void resetTitle() {
+
+    }
+
+    @Override
+    public void spawnParticle(Particle particle, Location location, int i) {
+
+    }
+
+    @Override
+    public void spawnParticle(Particle particle, double v, double v1, double v2, int i) {
+
+    }
+
+    @Override
+    public <T> void spawnParticle(Particle particle, Location location, int i, T t) {
+
+    }
+
+    @Override
+    public <T> void spawnParticle(Particle particle, double v, double v1, double v2, int i, T t) {
+
+    }
+
+    @Override
+    public void spawnParticle(Particle particle, Location location, int i, double v, double v1, double v2) {
+
+    }
+
+    @Override
+    public void spawnParticle(Particle particle, double v, double v1, double v2, int i, double v3, double v4, double v5) {
+
+    }
+
+    @Override
+    public <T> void spawnParticle(Particle particle, Location location, int i, double v, double v1, double v2, T t) {
+
+    }
+
+    @Override
+    public <T> void spawnParticle(Particle particle, double v, double v1, double v2, int i, double v3, double v4, double v5, T t) {
+
+    }
+
+    @Override
+    public void spawnParticle(Particle particle, Location location, int i, double v, double v1, double v2, double v3) {
+
+    }
+
+    @Override
+    public void spawnParticle(Particle particle, double v, double v1, double v2, int i, double v3, double v4, double v5, double v6) {
+
     }
 
     @Override
@@ -1349,4 +1521,19 @@ public class PlayerWrapper implements Player {
 
     }
 
+
+    @Override
+    public <T> void spawnParticle(Particle particle, Location location, int i, double v, double v1, double v2, double v3, T t) {
+        caller.spawnParticle(particle, location, i, v, v1, v2, v3, t);
+    }
+
+    @Override
+    public <T> void spawnParticle(Particle particle, double v, double v1, double v2, int i, double v3, double v4, double v5, double v6, T t) {
+        caller.spawnParticle(particle, v, v1, v2, i, v3, v4, v5, v6, t);
+    }
+
+    @Override
+    public AttributeInstance getAttribute(Attribute attribute) {
+        return null;
+    }
 }

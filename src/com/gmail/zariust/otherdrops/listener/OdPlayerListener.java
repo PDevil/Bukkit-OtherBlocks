@@ -17,6 +17,7 @@
 package com.gmail.zariust.otherdrops.listener;
 
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -29,6 +30,8 @@ import com.gmail.zariust.common.Verbosity;
 import com.gmail.zariust.otherdrops.Log;
 import com.gmail.zariust.otherdrops.OtherDrops;
 import com.gmail.zariust.otherdrops.event.OccurredEvent;
+
+import java.util.Set;
 
 public class OdPlayerListener implements Listener {
     private final OtherDrops parent;
@@ -53,7 +56,7 @@ public class OdPlayerListener implements Listener {
                 Block targetBlock = null;
                 if (event.getClickedBlock() == null) {
                     try {
-                        targetBlock = event.getPlayer().getTargetBlock(null, 200);
+                        targetBlock = event.getPlayer().getTargetBlock((Set<Material>) null, 200);
                     } catch (Exception ex) {
                         // no need to do anything here
                     }

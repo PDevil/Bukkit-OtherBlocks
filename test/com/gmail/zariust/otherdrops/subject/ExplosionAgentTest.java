@@ -2,16 +2,15 @@ package com.gmail.zariust.otherdrops.subject;
 
 import static org.junit.Assert.assertTrue;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import org.bukkit.EntityEffect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Server;
 import org.bukkit.World;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Creeper;
@@ -27,6 +26,9 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.metadata.MetadataValue;
+import org.bukkit.permissions.Permission;
+import org.bukkit.permissions.PermissionAttachment;
+import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -143,6 +145,71 @@ public class ExplosionAgentTest {
         return new TNTPrimed() {
 
             @Override
+            public boolean isOp() {
+                return false;
+            }
+
+            @Override
+            public void setOp(boolean b) {
+
+            }
+
+            @Override
+            public boolean isPermissionSet(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean isPermissionSet(Permission permission) {
+                return false;
+            }
+
+            @Override
+            public boolean hasPermission(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean hasPermission(Permission permission) {
+                return false;
+            }
+
+            @Override
+            public PermissionAttachment addAttachment(Plugin plugin, String s, boolean b) {
+                return null;
+            }
+
+            @Override
+            public PermissionAttachment addAttachment(Plugin plugin) {
+                return null;
+            }
+
+            @Override
+            public PermissionAttachment addAttachment(Plugin plugin, String s, boolean b, int i) {
+                return null;
+            }
+
+            @Override
+            public PermissionAttachment addAttachment(Plugin plugin, int i) {
+                return null;
+            }
+
+            @Override
+            public void removeAttachment(PermissionAttachment permissionAttachment) {
+
+            }
+
+            @Override
+            public void recalculatePermissions() {
+
+            }
+
+            @Override
+            public Set<PermissionAttachmentInfo> getEffectivePermissions() {
+                return null;
+            }
+
+            @Override
             public int getFuseTicks() {
                 // TODO Auto-generated method stub
                 return 0;
@@ -234,8 +301,23 @@ public class ExplosionAgentTest {
             }
 
             @Override
+            public void sendMessage(String s) {
+
+            }
+
+            @Override
+            public void sendMessage(String[] strings) {
+
+            }
+
+            @Override
             public Server getServer() {
                 // TODO Auto-generated method stub
+                return null;
+            }
+
+            @Override
+            public String getName() {
                 return null;
             }
 
@@ -260,6 +342,41 @@ public class ExplosionAgentTest {
             @Override
             public Entity getVehicle() {
                 // TODO Auto-generated method stub
+                return null;
+            }
+
+            @Override
+            public void setCustomName(String s) {
+
+            }
+
+            @Override
+            public String getCustomName() {
+                return null;
+            }
+
+            @Override
+            public void setCustomNameVisible(boolean b) {
+
+            }
+
+            @Override
+            public boolean isCustomNameVisible() {
+                return false;
+            }
+
+            @Override
+            public void setGlowing(boolean b) {
+
+            }
+
+            @Override
+            public boolean isGlowing() {
+                return false;
+            }
+
+            @Override
+            public Spigot spigot() {
                 return null;
             }
 
@@ -426,6 +543,76 @@ public class ExplosionAgentTest {
         return new Creeper() {
 
             @Override
+            public boolean isOp() {
+                return false;
+            }
+
+            @Override
+            public void setOp(boolean b) {
+
+            }
+
+            @Override
+            public boolean isPermissionSet(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean isPermissionSet(Permission permission) {
+                return false;
+            }
+
+            @Override
+            public boolean hasPermission(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean hasPermission(Permission permission) {
+                return false;
+            }
+
+            @Override
+            public PermissionAttachment addAttachment(Plugin plugin, String s, boolean b) {
+                return null;
+            }
+
+            @Override
+            public PermissionAttachment addAttachment(Plugin plugin) {
+                return null;
+            }
+
+            @Override
+            public PermissionAttachment addAttachment(Plugin plugin, String s, boolean b, int i) {
+                return null;
+            }
+
+            @Override
+            public PermissionAttachment addAttachment(Plugin plugin, int i) {
+                return null;
+            }
+
+            @Override
+            public void removeAttachment(PermissionAttachment permissionAttachment) {
+
+            }
+
+            @Override
+            public void recalculatePermissions() {
+
+            }
+
+            @Override
+            public Set<PermissionAttachmentInfo> getEffectivePermissions() {
+                return null;
+            }
+
+            @Override
+            public AttributeInstance getAttribute(Attribute attribute) {
+                return null;
+            }
+
+            @Override
             public boolean isPowered() {
                 // TODO Auto-generated method stub
                 return false;
@@ -505,8 +692,18 @@ public class ExplosionAgentTest {
             }
 
             @Override
+            public List<Block> getLastTwoTargetBlocks(Set<Material> set, int i) {
+                return null;
+            }
+
+            @Override
             public List<Block> getLineOfSight(HashSet<Byte> arg0, int arg1) {
                 // TODO Auto-generated method stub
+                return null;
+            }
+
+            @Override
+            public List<Block> getLineOfSight(Set<Material> set, int i) {
                 return null;
             }
 
@@ -541,6 +738,11 @@ public class ExplosionAgentTest {
             }
 
             @Override
+            public Block getTargetBlock(Set<Material> set, int i) {
+                return null;
+            }
+
+            @Override
             public boolean hasPotionEffect(PotionEffectType arg0) {
                 // TODO Auto-generated method stub
                 return false;
@@ -550,6 +752,11 @@ public class ExplosionAgentTest {
             public <T extends Projectile> T launchProjectile(
                     Class<? extends T> arg0) {
                 // TODO Auto-generated method stub
+                return null;
+            }
+
+            @Override
+            public <T extends Projectile> T launchProjectile(Class<? extends T> aClass, Vector vector) {
                 return null;
             }
 
@@ -581,24 +788,6 @@ public class ExplosionAgentTest {
             public void setRemainingAir(int arg0) {
                 // TODO Auto-generated method stub
 
-            }
-
-            @Override
-            public Arrow shootArrow() {
-                // TODO Auto-generated method stub
-                return null;
-            }
-
-            @Override
-            public Egg throwEgg() {
-                // TODO Auto-generated method stub
-                return null;
-            }
-
-            @Override
-            public Snowball throwSnowball() {
-                // TODO Auto-generated method stub
-                return null;
             }
 
             @Override
@@ -657,8 +846,23 @@ public class ExplosionAgentTest {
             }
 
             @Override
+            public void sendMessage(String s) {
+
+            }
+
+            @Override
+            public void sendMessage(String[] strings) {
+
+            }
+
+            @Override
             public Server getServer() {
                 // TODO Auto-generated method stub
+                return null;
+            }
+
+            @Override
+            public String getName() {
                 return null;
             }
 
@@ -825,6 +1029,31 @@ public class ExplosionAgentTest {
             }
 
             @Override
+            public boolean isLeashed() {
+                return false;
+            }
+
+            @Override
+            public Entity getLeashHolder() throws IllegalStateException {
+                return null;
+            }
+
+            @Override
+            public boolean setLeashHolder(Entity entity) {
+                return false;
+            }
+
+            @Override
+            public boolean isGliding() {
+                return false;
+            }
+
+            @Override
+            public void setGliding(boolean b) {
+
+            }
+
+            @Override
             public EntityEquipment getEquipment() {
                 // TODO Auto-generated method stub
                 return null;
@@ -882,6 +1111,21 @@ public class ExplosionAgentTest {
             public boolean isCustomNameVisible() {
                 // TODO Auto-generated method stub
                 return false;
+            }
+
+            @Override
+            public void setGlowing(boolean b) {
+
+            }
+
+            @Override
+            public boolean isGlowing() {
+                return false;
+            }
+
+            @Override
+            public Spigot spigot() {
+                return null;
             }
 
             @Override

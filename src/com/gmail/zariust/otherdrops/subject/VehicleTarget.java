@@ -29,13 +29,7 @@ import com.gmail.zariust.otherdrops.data.VehicleData;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Boat;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Minecart;
-import org.bukkit.entity.Painting;
-import org.bukkit.entity.PoweredMinecart;
-import org.bukkit.entity.StorageMinecart;
-import org.bukkit.entity.Vehicle;
+import org.bukkit.entity.*;
 
 public class VehicleTarget implements Target {
     private Material material;
