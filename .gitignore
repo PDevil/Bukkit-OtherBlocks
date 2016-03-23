@@ -21,3 +21,7 @@ rsrc/plugin.yml
 
 # Ignore version file this file is locally updated
 version.properties
+
+.idea
+/*.iml
+out
